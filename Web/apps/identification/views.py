@@ -4,9 +4,9 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import io
 import ssl
-import tensorflow as tf
+# import tensorflow as tf
 # from tensorflow import keras
-# from keras.models import load_model
+from keras.models import load_model
 from tqdm import tqdm
 import pandas as pd
 import spacy
