@@ -14,16 +14,16 @@ from keras.preprocessing.sequence import pad_sequences
 import json
 
 
-def load_model():
-    model = tf.keras.models.load_model('../../../../my_model.h5')
+def input_model():
+    model = load_model('/home/ubuntu/ziran/my_model.h5')
     return model
 
 
 def process_words(model, text):
     max_length = 55
-    nlp = spacy.load('../../../../en_core_web_lg-2.2.5/en_core_web_lg/en_core_web_lg-2.2.5', disable=['parser', 'ner', 'tagger'])
+    nlp = spacy.load('/home/ubuntu/ziran/en_core_web_lg-2.2.5/en_core_web_lg/en_core_web_lg-2.2.5', disable=['parser', 'ner', 'tagger'])
     nlp.vocab.add_flag(lambda s: s.lower() in spacy.lang.en.stop_words.STOP_WORDS, spacy.attrs.IS_STOP)
-    with open('../../../../quora_dict.txt', 'r') as json_file:
+    with open('/home/ubuntu/ziran/quora_dict.txt', 'r') as json_file:
         word_dict = json.load(json_file)
     s1 = text
     s1 = pd.Series(s1)
@@ -61,7 +61,7 @@ def predict_request(request):
         if request.POST.get("text"):
             text = request.POST.get("text")
             print(text)
-            model = load_model()
+            model = input_model()
             result = process_words(model, text)
     return render(request, "predict.html", {"result": result})
 
