@@ -2,13 +2,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from PIL import Image
-import numpy as np
 import io
 import ssl
-from keras.models import load_model
+from tensorflow import keras
+# from keras.models import load_model
 from tqdm import tqdm
-import numpy as np
 import pandas as pd
 import spacy
 from keras.preprocessing.sequence import pad_sequences
@@ -16,7 +14,7 @@ import json
 
 
 def load_model():
-    model = load_model('../../../../my_model.h5')
+    model = keras.models.load_model('../../../../my_model.h5')
     return model
 
 
