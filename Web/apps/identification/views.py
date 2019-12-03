@@ -2,29 +2,50 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from keras.preprocessing.image import img_to_array
-from keras.applications import imagenet_utils
-from keras.applications.resnet50 import ResNet50
 from PIL import Image
 import numpy as np
 import io
-import json
 import ssl
+from keras.models import load_model
+from tqdm import tqdm
+import numpy as np
+import pandas as pd
+import spacy
+from keras.preprocessing.sequence import pad_sequences
+import json
 
 
-def prepare_image(image, target):
-    # if the image mode is not RGB, convert it
-    if image.mode != "RGB":
-        image = image.convert("RGB")
+def load_model():
+    model = load_model('../../../../my_model.h5')
+    return model
 
-    # resize the input image and preprocess it
-    image = image.resize(target)
-    image = img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    image = imagenet_utils.preprocess_input(image)
 
-    # return the processed image
-    return image
+def process_words(model, text):
+    max_length = 55
+    nlp = spacy.load('../../../../en_core_web_lg-2.2.5/en_core_web_lg/en_core_web_lg-2.2.5', disable=['parser', 'ner', 'tagger'])
+    nlp.vocab.add_flag(lambda s: s.lower() in spacy.lang.en.stop_words.STOP_WORDS, spacy.attrs.IS_STOP)
+    with open('quora_dict.txt', 'r') as json_file:
+        word_dict = json.load(json_file)
+    s1 = text
+    s1 = pd.Series(s1)
+    s1 = nlp.pipe(s1)
+    word_index = 1
+    lemma_dict = {}
+    word_sequences = []
+    for doc in tqdm(s1):
+        word_seq = []
+        for token in doc:
+            if (token.text not in word_dict) and (token.pos_ is not "PUNCT"):
+                word_dict[token.text] = word_index
+                word_index += 1
+                lemma_dict[token.text] = token.lemma_
+            if token.pos_ is not "PUNCT":
+                word_seq.append(word_dict[token.text])
+        word_sequences.append(word_seq)
+    t = pad_sequences(word_sequences, maxlen=max_length)
+    print(model.predict(t))
+    result = model.predict(t)[0][0]
+    return result
 
 
 @login_required(login_url='/accounts/login/')
@@ -34,42 +55,15 @@ def predict(request):
 
 @csrf_exempt
 def predict_request(request):
-
-    data = {"success": False}
-
     # solve error “SSL: CERTIFICATE_VERIFY_FAILED”
+    result = "000"
     ssl._create_default_https_context = ssl._create_unverified_context
-
-    top = request.POST.get("top")
-
-    # ensure an image was properly uploaded to our endpoint
     if request.method == 'POST':
-
-        if request.FILES.get("image"):
-            # read the image in PIL format
-            if top:
-                top = int(top)
-            else:
-                top = 6
-
-            image = request.FILES["image"].read()
-            image = Image.open(io.BytesIO(image))
-            model = ResNet50(weights='imagenet')
-
-            img = prepare_image(image, target=(224, 224))
-            preds = model.predict(img)
-            results = imagenet_utils.decode_predictions(preds, top=top)
-            data["predictions"] = []
-
-            # loop over the results and add them to the list of
-            # returned predictions
-            for (imagenetID, label, prob) in results[0]:
-                r = {"label": label, "probability": float(prob)}
-                data["predictions"].append(r)
-
-            # indicate that the request was a success
-            data["success"] = True
-
-    return HttpResponse(json.dumps(data), content_type='application/json')
+        if request.POST.get("text"):
+            text = request.POST.get("text")
+            print(text)
+            model = load_model()
+            result = process_words(model, text)
+    return render(request, "predict.html", {"result": result})
 
 
