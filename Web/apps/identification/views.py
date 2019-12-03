@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import io
 import ssl
-from tensorflow import keras
+import tensorflow as tf
+# from tensorflow import keras
 # from keras.models import load_model
 from tqdm import tqdm
 import pandas as pd
@@ -14,7 +15,7 @@ import json
 
 
 def load_model():
-    model = keras.models.load_model('../../../../my_model.h5')
+    model = tf.keras.models.load_model('../../../../my_model.h5')
     return model
 
 
@@ -22,7 +23,7 @@ def process_words(model, text):
     max_length = 55
     nlp = spacy.load('../../../../en_core_web_lg-2.2.5/en_core_web_lg/en_core_web_lg-2.2.5', disable=['parser', 'ner', 'tagger'])
     nlp.vocab.add_flag(lambda s: s.lower() in spacy.lang.en.stop_words.STOP_WORDS, spacy.attrs.IS_STOP)
-    with open('quora_dict.txt', 'r') as json_file:
+    with open('../../../../quora_dict.txt', 'r') as json_file:
         word_dict = json.load(json_file)
     s1 = text
     s1 = pd.Series(s1)
