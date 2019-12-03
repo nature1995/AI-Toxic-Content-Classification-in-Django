@@ -11,6 +11,7 @@
       <div class="container"><img class="img-fluid d-block mx-auto mb-5" src={% static "assets/img/question.png" %}>
           <h2><strong>Toxic Content Classification</strong></h2>
           <hr class="star-dark">
+          <div class="text-center mt-4"><a class="btn btn-outline-dark btn-xl" role="button" href="{% url "predict" %}"><i class="fa fa-snowflake-o"></i><span>Try it Now!</span></a></div>
           <h2 class="font-weight-light mb-0">A application which can detect toxic and divisive content</h2>
       </div>
   </header>
@@ -19,7 +20,7 @@
 {% block content %}
   <section id="portfolio" class="portfolio">
       <div class="container">
-          <h2 class="text-uppercase text-center text-secondary">Quastions</h2>
+          <h2 class="text-uppercase text-center text-secondary">Our model</h2>
           <hr class="star-dark mb-5">
       </div>
   </section>
@@ -28,9 +29,9 @@
 {% block download %}
   <section class="bg-info text-white mb-0">
       <div class="container">
-          <h2 class="text-uppercase text-center text-white">DownLoad</h2>
+          <h2 class="text-uppercase text-center text-white">Github</h2>
           <hr class="star-dark mb-5">
-          <div class="text-center mt-4"><a class="btn btn-outline-light btn-xl" role="button" href="#"><i class="fa fa-download mr-2"></i><span>Download Now!</span></a></div>
+          <div class="text-center mt-4"><a class="btn btn-outline-light btn-xl" role="button" href="https://github.com/nature1995/AI-Toxic-Content-Classification-in-Django"><i class="fa fa-download mr-2"></i><span>Download Now!</span></a></div>
       </div>
   </section>
 {% endblock download %}

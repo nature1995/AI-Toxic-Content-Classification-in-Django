@@ -1,4 +1,4 @@
-Django<2.2
+Django<=2.1.5
 django-allauth>=0.38.0
 django-filter>=2.1.0
 django-widget-tweaks>=1.4.3
@@ -21,13 +21,13 @@ requests-oauthlib>=1.2.0
 six>=1.11.0
 setuptools>=18.0.0
 scipy>=1.1.0
-tensorboard<2.13.0
-tensorflow<2.13.1
+tensorboard<=1.15.0
+tensorflow<=1.15.0
 Keras>=2.2.2
 Keras-Applications>=1.0.4
 Keras-Preprocessing>=1.0.2
 h5py>=2.8.0
 numpy==1.16.4
-selenium
+spacy
 
 
