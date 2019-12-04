@@ -2,21 +2,19 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import io
-import ssl
-# import tensorflow as tf
-# from tensorflow import keras
-from keras.models import load_model
+from tensorflow import keras
 from tqdm import tqdm
+from keras.preprocessing.sequence import pad_sequences
+import keras.backend.tensorflow_backend as KTF
 import pandas as pd
 import spacy
-from keras.preprocessing.sequence import pad_sequences
 import json
-
+import io
+import ssl
 
 def input_model():
-    model = load_model('/home/ubuntu/ziran/my_model.h5')
-    return model
+  model = keras.models.load_model('/home/ubuntu/ziran/my_model.h5')
+  return model
 
 
 def process_words(model, text):
