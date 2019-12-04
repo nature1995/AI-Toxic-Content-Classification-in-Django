@@ -55,7 +55,7 @@ def predict(request):
             print(text)
             model = input_model()
             result = process_words(model, text)
-            print("result:" + result)
-    return render(request, "predict.html", {"result": result})
+            print("result:" + str(result))
+    return render(request, "predict.html", {"result": str(result)})
 
 
