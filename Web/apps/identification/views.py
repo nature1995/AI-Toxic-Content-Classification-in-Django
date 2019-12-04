@@ -53,9 +53,9 @@ def predict(request):
         if request.POST.get("text"):
             text = request.POST.get("text")
             print(text)
-            # model = input_model()
-            # result = process_words(model, text)
-            # predict("result:" + result)
+            model = input_model()
+            result = process_words(model, text)
+            predict("result:" + result)
     return render(request, "predict.html", {"result": result})
 
 
