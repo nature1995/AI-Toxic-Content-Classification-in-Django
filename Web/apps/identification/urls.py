@@ -18,6 +18,5 @@ from .views import *
 
 
 urlpatterns = [
-    path('predict/api/', predict_request, name='predict_request'),
     path('predict/', predict, name='predict'),
 ]

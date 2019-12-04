@@ -1,20 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from tensorflow import keras
 from tqdm import tqdm
 from keras.preprocessing.sequence import pad_sequences
-import keras.backend.tensorflow_backend as KTF
 import pandas as pd
 import spacy
 import json
-import io
 import ssl
 
+
 def input_model():
-  model = keras.models.load_model('/home/ubuntu/ziran/my_model.h5')
-  return model
+    model = keras.models.load_model('/home/ubuntu/ziran/my_model.h5')
+    return model
 
 
 def process_words(model, text):
@@ -46,21 +44,18 @@ def process_words(model, text):
 
 
 @login_required(login_url='/accounts/login/')
-def predict(request):
-    return render(request, 'predict.html')
-
-
 @csrf_exempt
-def predict_request(request):
+def predict(request):
     # solve error “SSL: CERTIFICATE_VERIFY_FAILED”
-    result = "000"
+    result = "  "
     ssl._create_default_https_context = ssl._create_unverified_context
     if request.method == 'POST':
         if request.POST.get("text"):
             text = request.POST.get("text")
             print(text)
-            model = input_model()
-            result = process_words(model, text)
+            # model = input_model()
+            # result = process_words(model, text)
+            # predict("result:" + result)
     return render(request, "predict.html", {"result": result})
 
 

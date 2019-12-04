@@ -1,24 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block style %}
-  <style>
-      div.showImage > button{
-          margin-top: 280px;
-      }
-      #img1{
-          width: 800px ;
-          height: 350px ;
-          text-align: center;
-      }
-      #faceform{
-          text-align: center;
-      }
-      .img-responsive {
-        display: block;
-        height: auto;
-        max-width: 100%;
-      }
-  </style>
 {% endblock style %}
 
 {% block content %}
@@ -57,89 +39,31 @@
   <section id="predict" class="predict">
     <br>
     <br>
-    <div id="app" class="container">
-      <form class="" action="{% url "predict_request" %}" id="identify_form" method="post">
+    <div class="container">
+      <div class="row">
+      <form class="form-group col-md-12" action="{% url "predict" %}" id="identify_form" method="post">
         {% csrf_token %}
-        <input type="text" name="text">
-        <input type="submit" value="Submit">
+        <div class="col-md-6">
+        <textarea class="form-control" name="text" placeholder="Create new notes by voice or keyboard input..." rows="6"></textarea>
+        </div>
+        <br>
+        <div class="btn-group col-md-6" role="group">
+          <button type="button" href="{% url "home" %}" class="btn btn-secondary">Back</button>
+          <input class="btn btn-info" type="submit" value="Submit">
+        </div>
       </form>
-      <p>{{ result }}</p>
-
-{#        <div class="input-group">#}
-{#          <div class="form-group col-md-12">#}
-{#            <label for="name">Please input sentence (e.g. I like apple.)</label>#}
-{#              <textarea class="form-control" id="text" placeholder="Create new notes by voice or keyboard input..." rows="6"></textarea>#}
-{#          </div>#}
-{#        </div>#}
-{#        <br>#}
-{#        <button type="button" value="Submit" class="btn btn-info">Identify</button>#}
-{#      </form>#}
-{#      <br>#}
-{#      <div class="col-md-12">#}
-{#        <button type="button" href="{% url "home" %}" class="btn btn-secondary">Back</button>#}
-
-{#        <br>#}
-{#        <br>#}
-{#        <span id="showprediction"></span>#}
-{#        <br>#}
-{#        <br>#}
-{#      </div>#}
-{#        <div class="row">#}
-{#          <div class="col-md-6 col-center-block">#}
-{#            <img class="img-responsive" id="img1" :src="src1" hidden>#}
-{#          </div>#}
-{#        </div>#}
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p>{{ result }}</p>
+        </div>
+      </div>
     </div>
   </section>
 
 {% endblock content %}
 
 {% block scripts %}
-
-<script>
-    var app = new Vue({
-      el: '#app',
-      data:{
-          src1: '',
-          file1: null,
-          label: false
-      },
-      methods:{
-        submit:function(){
-            var self = this
-            var labels = []
-            var probabilities = []
-            $('#showprediction').text('In the calculation, please wait...')
-            $.ajax({
-                url: 'api/',
-                type: 'POST',
-                cache: false,
-                data: new FormData($('#faceform')[0]),
-                processData: false,
-                contentType: false,
-                timeout: 30000,//10秒超时时间
-            }).done(function(res) {
-                try {
-                /*    console.log(res.predictions[0].label) */
-                /*
-                for (var i=1; i <= 5; i++) {
-                      labels.append(res.predictions[i].label)
-                }
-                  $('#showprediction').text('Prediction: '+ labels[0])
-                */
-                 $('#showprediction').text('Prediction: '+ res.predictions[0].label)
-                }
-                catch (e) {
-                $('#showprediction').text('Prediction: unknown, please try it again!')
-                }
-            }).fail(function(res) {
-                $('#showprediction').text('Prediction: unknown, please try it again!')
-            });
-        },
-      }
-    })
-</script>
-
 {% endblock scripts %}
 
 
