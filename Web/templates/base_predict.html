@@ -55,7 +55,14 @@
       </div>
       <div class="row">
         <div class="col-4">
-          <p>{{ result }}</p>
+          <p>Original text: {{ sentence }}</p>
+          <p>Result: {{ result }}</p>
+          {% if result == "" %}
+            {% elif result < 0 %}
+            <p><i class="fa fa-lg fa-check"></i></p>
+            {% elif result > 0 %}
+            <p><i class="fa fa-lg fa-remove"></i></p>
+          {% endif %}
         </div>
       </div>
     </div>
