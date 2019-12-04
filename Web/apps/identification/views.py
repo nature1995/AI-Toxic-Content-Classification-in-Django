@@ -47,7 +47,7 @@ def process_words(model, text):
 @csrf_exempt
 def predict(request):
     # solve error “SSL: CERTIFICATE_VERIFY_FAILED”
-    result = ""
+    result = "0"
     text = ""
     ssl._create_default_https_context = ssl._create_unverified_context
     if request.method == 'POST':

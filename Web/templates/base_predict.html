@@ -57,7 +57,7 @@
         <div class="col-4">
           <p>Original text: {{ sentence }}</p>
           <p>Result: {{ result }}</p>
-          {% if result == "" %}
+          {% if result == 0 %}
             {% elif result < 0 %}
             <p><i class="fa fa-lg fa-check"></i></p>
             {% elif result > 0 %}
