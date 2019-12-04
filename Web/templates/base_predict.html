@@ -44,7 +44,7 @@
       <form class="form-group col-md-12" action="{% url "predict" %}" id="identify_form" method="post">
         {% csrf_token %}
         <div class="col-md-6">
-        <textarea class="form-control" name="text" placeholder="Create new notes by voice or keyboard input..." rows="6"></textarea>
+        <textarea class="form-control" name="text" placeholder="Write a question..." rows="6"></textarea>
         </div>
         <br>
         <div class="btn-group col-md-6" role="group">
