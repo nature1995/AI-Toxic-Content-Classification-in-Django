@@ -1,5 +1,12 @@
 # Model
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Description](#description)
+- [Train](#train)
+- [Use](#use)
+
 ## Introduction  
 This directory contains all the models we use, include simple LSTM, simple GRU, Seq2One and one combination of LSTM & GRU.
 
@@ -28,7 +35,7 @@ Our models:
 
 The training data includes the question that was asked, and whether it was identified as insincere (target = 1). The ground-truth labels contain some amount of noise: they are not guaranteed to be perfect.
 
-## To train a model
+## Train
 The dataset we use is on the kaggle competition: https://www.kaggle.com/c/quora-insincere-questions-classification. To train our models, after downloading the code, you can:
 
 - Upload to your own kaggle kernel and you'll be able to run it. 
@@ -36,7 +43,7 @@ The dataset we use is on the kaggle competition: https://www.kaggle.com/c/quora-
 - Download the dataset on your own machine and change the path in the code to where you store the dataset.
  Then run the code.
 
-## To use pre-trained model to test your own sentence
+## Use
 - You need to download below four things to one folder
   - pre-trained model(link is above)
 
