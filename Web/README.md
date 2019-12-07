@@ -24,12 +24,12 @@ You can use either local machine or server.
 Deep Learning AMI (Ubuntu 16.04) Version 26.0.(Local machine ignore)
 
 - Upload file
-You can download files though the link.
+You can download files though the [link](https://drive.google.com/open?id=1VNvt9su2-pZ0EN8JsXl24WjgYjqgsKGz).
 Then use `scp` upload the file on the server or use local machine on the root dictionary (AI-Toxic-Content-Classification-in-Django/...)
     ```
-    en_core_web_lg-2.2.5/
+    en_core_web_lg-2.2.5.zip #unzip this file
     quora_dict.txt
-    quora_model_test
+    my_model.h5
     ```
 - Install Keras and Tensorflow GPU   
 Please install Keras-gpu and Tensorflow-gpu follow the official instruction.
