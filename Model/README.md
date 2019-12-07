@@ -1,4 +1,4 @@
-# Model Zoo
+# Model
 
 ## Introduction  
 This directory contains all the models we use, include simple LSTM, simple GRU, Seq2One and one combination of LSTM & GRU.
