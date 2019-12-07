@@ -27,9 +27,9 @@
           <p>Original text: {{ sentence }}</p>
           <p>Result: {{ result }}</p>
           {% if result == 0 %}
-            {% elif result < 0.35 %}
+            {% elif result < 0.15 %}
             <p><i class="fa fa-lg fa-check"></i></p>
-            {% elif result > 0.35 %}
+            {% elif result > 0.15 %}
             <p><i class="fa fa-lg fa-remove"></i></p>
           {% endif %}
         </div>
