@@ -1,67 +1,49 @@
-# AI-Toxic-Content-Classification-in-Django
-
-[![python3.5](https://img.shields.io/badge/python-3.5-blue.svg)]()
-[![python3.6](https://img.shields.io/badge/python-3.6-brightgreen.svg)]()
-[![django2.1.5](https://img.shields.io/badge/django-2.1.5-orange.svg)]()
+# Model Zoo
 
 ## Introduction  
-This is a course project about text classification.
+This directory contains all the models we use, include simple LSTM, simple GRU, Seq2One and one combination of LSTM & GRU.
+
 ## Description
-In this project we will predict whether a question asked on Quora is sincere or not.
+Our models:
 
-An insincere question is defined as a question intended to make a statement rather than look for helpful answers. Some characteristics that can signify that a question is insincere:
+* LSTM
 
-* Has a non-neutral tone
+  * One layer bidirection LSTM
 
-  * Has an exaggerated tone to underscore a point about a group of people
+  * Two layers bidirection LSTM
 
-  * Is rhetorical and meant to imply a statement about a group of people
+* GRU
 
-* Is disparaging or inflammatory
+  * One layer bidirection GRU
 
-  * Suggests a discriminatory idea against a protected class of people, or seeks confirmation of a stereotype
+* Combination of LSTM & GRU
 
-  * Makes disparaging attacks/insults against a specific person or group of people
+  * We have a pre-trained model for this one on google drive, link is https://drive.google.com/open?id=1OU0jZw3SEe6JUumQuW40YaQs9rP6qk-6
 
-  * Based on an outlandish premise about a group of people
+* Seq2One
 
-  * Disparages against a characteristic that is not fixable and not measurable
+  * Encoder: LSTM and GRU
 
-* Isn't grounded in reality
-
-  * Based on false information, or contains absurd assumptions
-
-* Uses sexual content (incest, bestiality, pedophilia) for shock value, and not to seek genuine answers
+  * Decoder: Attention mechanism
 
 The training data includes the question that was asked, and whether it was identified as insincere (target = 1). The ground-truth labels contain some amount of noise: they are not guaranteed to be perfect.
-## Features
-- Need to add.
-## Architicture
-We have two part:1.model;2.website
 
-pytourch?
-tensorflow
+## To train a model
+The dataset we use is on the kaggle competition: https://www.kaggle.com/c/quora-insincere-questions-classification. To train our models, after downloading the code, you can:
 
-## Usage
-Step1: We input some question to our inputbox on our website
+- Upload to your own kaggle kernel and you'll be able to run it. 
 
-Step2: Our website will deliver the question to our model layer and automatically output a result.
+- Download the dataset on your own machine and change the path in the code to where you store the dataset.
+ Then run the code.
 
-## Result
-percent?
-accuracy
+## To use pre-trained model to test your own sentence
+- You need to download below four things to one folder
+  - pre-trained model(link is above)
 
+  - pre_trained_predict.ipynb 
 
-## Example
-- some picture
-- some classfication
-- demo
+  - en_core_web_lg-2.2.5 (This is a folder on google drive: https://drive.google.com/open?id=1h8ygWJh1iKfgBBnZCOxHdEYFK5iT2YIl)
 
+  - quora_dict.txt (https://drive.google.com/open?id=17zDlY0jpg0IdSRjv9ersaZPWHu_E3SSi)
 
-## Author
-* **Ziran Gong** - [Web Page](https://github.com/nature1995)
-* **Peihong Yu** - [Web Page](https://github.com/PeihongY)
-* **Haoran Peng** - [Web Page](https://github.com/PPGod95)
-
-## License
-This software is licensed under the MIT License. For more information, read the file [LICENSE](https://github.com/nature1995/AI-Toxic-Content-Classification-in-Django/blob/master/LICENSE).
+- In the pre_trained_predict.ipynb, change the variable s to the sentence you want to test and run it.
