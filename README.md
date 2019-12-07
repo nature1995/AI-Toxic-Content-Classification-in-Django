@@ -24,6 +24,8 @@
 ## Usage
 - [For Model](https://github.com/nature1995/AI-Toxic-Content-Classification-in-Django/tree/master/Model)
 - [For web application](https://github.com/nature1995/AI-Toxic-Content-Classification-in-Django/tree/master/Web)
+- [For demo](https://github.com/nature1995/AI-Toxic-Content-Classification-in-Django/tree/master/Demo)
+
 
 ## Author
 
