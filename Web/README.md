@@ -2,7 +2,8 @@
 
 [![python3.5](https://img.shields.io/badge/python-3.5-blue.svg)]()
 [![python3.6](https://img.shields.io/badge/python-3.6-brightgreen.svg)]()
-[![django2.1.5](https://img.shields.io/badge/django-2.1.5-orange.svg)]()
+[![python3.6](https://img.shields.io/badge/python-3.7-orange.svg)]()
+[![django2.1.5](https://img.shields.io/badge/django-2.1.5-green.svg)]()
 
 
 ## Table of Contents
