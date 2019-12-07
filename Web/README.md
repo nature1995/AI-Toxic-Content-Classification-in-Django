@@ -30,6 +30,8 @@ Then use `scp` upload the file on the server or use local machine on the root di
     en_core_web_lg-2.2.5.zip #unzip this file
     quora_dict.txt
     my_model.h5
+    scp -i <amazon_key> <local_file_position> ubuntu@<public_DNS_IPv4>:<local_file_position>
+    # public_DNS_IPv4 can find in your AWS instance dashboard
     ```
 - Install Keras and Tensorflow GPU   
 Please install Keras-gpu and Tensorflow-gpu follow the official instruction.
