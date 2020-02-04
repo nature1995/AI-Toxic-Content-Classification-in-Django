@@ -3,8 +3,7 @@
 [![python3.5](https://img.shields.io/badge/python-3.5-blue.svg)](https://www.python.org/downloads/)
 [![python3.6](https://img.shields.io/badge/python-3.6-brightgreen.svg)](https://www.python.org/downloads/)
 [![python3.7](https://img.shields.io/badge/python-3.7-orange.svg)](https://www.python.org/downloads/)
-[![django2.1.5](https://img.shields.io/badge/django-2.1.5-green.svg)](https://www.djangoproject.com/download/)
-
+[![django3.0](https://img.shields.io/badge/django-3.0.0-green.svg)](https://www.djangoproject.com/download/)
 
 ## Table of Contents
 
