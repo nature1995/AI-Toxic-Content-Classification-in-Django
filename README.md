@@ -32,7 +32,7 @@ We aim at ﬁnding out inappropriate comments from Quora website by building a b
 ![Combination model](./Pictures/model2.png)
 
 ### Applications 
-#### UI
+#### UI Interface
 ![UI](./Pictures/app1.png)
 
 #### Result for application
